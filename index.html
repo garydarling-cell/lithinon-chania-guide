@@ -230,7 +230,7 @@ function render(){
 }
 
 function openShare(){
-  document.getElementById('rd-title').textContent = "Lithinon Luxury Suites";
+  document.getElementById('rd-title').textContent = "Lithinon Restaurant Guide";
   document.getElementById('rd-body').innerHTML = `
     <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:20px 0;">
       <img src="${GUIDE_QR}" alt="QR code for the guide" width="220" height="220"
@@ -239,9 +239,14 @@ function openShare(){
       <a href="${GUIDE_URL}" target="_blank" rel="noopener"
         style="font-size:18px;font-weight:600;color:var(--accent);word-break:break-all;text-align:center;">${GUIDE_URL}</a>
       <button id="copy-link-btn" class="nav-btn" style="margin-top:4px;">&#128203; Copy link</button>
+      <button id="share-back-btn" class="nav-btn" style="margin-top:4px;background:rgba(255,255,255,.03);color:var(--ink);border-color:var(--line);">&larr; Back to guide</button>
     </div>`;
   document.getElementById('reader').classList.remove('hide');
   document.getElementById('reader').scrollTop = 0;
+  const backBtn = document.getElementById('share-back-btn');
+  if(backBtn) backBtn.addEventListener('click', ()=>{
+    document.getElementById('reader').classList.add('hide');
+  });
   const copyBtn = document.getElementById('copy-link-btn');
   if(copyBtn) copyBtn.addEventListener('click', ()=>{
     navigator.clipboard?.writeText(GUIDE_URL).then(()=>{
